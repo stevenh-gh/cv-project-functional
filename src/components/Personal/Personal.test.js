@@ -57,4 +57,40 @@ describe("Personal", () => {
     fireEvent.click(submitBtnElement);
     expect(formElement).toHaveClass("hidden");
   });
+
+  describe("after submitting", () => {
+    it("should render full name after submitting", () => {
+      const firstNameElement = screen.getByLabelText(/first name/i);
+      const lastNameElement = screen.getByLabelText(/last name/i);
+      const formElement = screen.getByRole("form");
+      fireEvent.change(firstNameElement, { target: { value: "john" } });
+      fireEvent.change(lastNameElement, { target: { value: "doe" } });
+      fireEvent.submit(formElement);
+      // const nameElement = screen.getAllByRole("generic", { name: "john doe" });
+      const nameElement = screen.getByText(/john doe/i);
+      expect(nameElement).toBeInTheDocument();
+    });
+    it("should render address after submitting", () => {
+      const form = screen.getByRole("form");
+      const addressLineOneElement = screen.getByLabelText(/address line 1/i);
+      const cityElement = screen.getByLabelText(/city/i);
+      const stateElement = screen.getByLabelText(/state/i);
+      const zipElement = screen.getByLabelText(/postal code/i);
+
+      fireEvent.change(addressLineOneElement, {
+        target: { value: "123 Maple Street" },
+      });
+      fireEvent.change(cityElement, { target: { value: "Anytown" } });
+      fireEvent.change(stateElement, { target: { value: "PA" } });
+      fireEvent.change(zipElement, { target: { value: 17101 } });
+      fireEvent.submit(form);
+
+      const addressElement = screen.getByText(/123 maple street/i);
+      const addressElement2 = screen.getByText(/anytown, pa 17101/i);
+      expect(addressElement).toBeInTheDocument();
+      expect(addressElement2).toBeInTheDocument();
+    });
+    it.todo("should render email after submitting");
+    it.todo("should render phone number after submitting");
+  });
 });
