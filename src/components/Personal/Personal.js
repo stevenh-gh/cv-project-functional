@@ -13,7 +13,7 @@ export default class Personal extends React.Component {
         <Input id="postalCode" text="Postal code" />
         <Input id="email" text="Email" />
         <Input id="phone" text="Phone" />
-        <button type="submit"></button>
+        <button type="submit">Submit</button>
       </form>
     );
   }
