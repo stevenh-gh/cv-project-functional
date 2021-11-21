@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import Personal from "./Personal";
 
 beforeEach(() => {
@@ -49,5 +49,12 @@ describe("Personal", () => {
   it("should render submit button", () => {
     const submitBtnElement = screen.getByRole("button");
     expect(submitBtnElement).toBeInTheDocument();
+  });
+
+  it("should be hidden when submit", () => {
+    const formElement = screen.getByRole("form");
+    const submitBtnElement = screen.getByRole("button");
+    fireEvent.click(submitBtnElement);
+    expect(formElement).toHaveClass("hidden");
   });
 });
