@@ -10,6 +10,7 @@ export default class Personal extends React.Component {
         firstName: "",
         lastName: "",
         addressLineOne: "",
+        addressLineTwo: "",
         city: "",
         state: "",
         postalCode: "",
@@ -25,6 +26,7 @@ export default class Personal extends React.Component {
         firstName: e.target.elements[0].value,
         lastName: e.target.elements[1].value,
         addressLineOne: e.target.elements[2].value,
+        addressLineTwo: e.target.elements[3].value,
         city: e.target.elements[4].value,
         state: e.target.elements[5].value,
         postalCode: e.target.elements[6].value,
@@ -34,8 +36,15 @@ export default class Personal extends React.Component {
 
   render() {
     let { formVisible } = this.state;
-    let { firstName, lastName, addressLineOne, city, state, postalCode } =
-      this.state.personalInfo;
+    let {
+      firstName,
+      lastName,
+      addressLineOne,
+      city,
+      state,
+      postalCode,
+      addressLineTwo,
+    } = this.state.personalInfo;
     return (
       <>
         <PersonalForm submit={this.handleSubmit} isVisible={formVisible} />
@@ -45,6 +54,7 @@ export default class Personal extends React.Component {
           </div>
           <div>
             <div>{addressLineOne}</div>
+            <div>{addressLineTwo}</div>
             <div>
               {city}, {state} {postalCode}
             </div>
