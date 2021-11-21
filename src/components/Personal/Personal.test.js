@@ -4,7 +4,7 @@ import Personal from "./Personal";
 beforeEach(() => {
   render(<Personal />);
 });
-describe("GeneralInformation", () => {
+describe("Personal", () => {
   it("should render first name", () => {
     const firstNameElement = screen.getByLabelText(/first name/i);
     expect(firstNameElement).toBeInTheDocument();

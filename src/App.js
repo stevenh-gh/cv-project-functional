@@ -1,13 +1,13 @@
 import React from "react";
-import GeneralInformation from "./components/GeneralInformation/GeneralInformation";
 import Header from "./components/Header/Header";
+import Personal from "./components/Personal/Personal";
 
 class App extends React.Component {
   render() {
     return (
       <div className="container mx-auto bg-blue-200">
         <Header />
-        <GeneralInformation />
+        <Personal />
       </div>
     );
   }
