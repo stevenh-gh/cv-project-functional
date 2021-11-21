@@ -45,4 +45,9 @@ describe("Personal", () => {
     const phoneElement = screen.getByLabelText(/phone/i);
     expect(phoneElement).toBeInTheDocument();
   });
+
+  it("should render submit button", () => {
+    const submitBtnElement = screen.getByRole("button");
+    expect(submitBtnElement).toBeInTheDocument();
+  });
 });
