@@ -90,6 +90,32 @@ describe("Personal", () => {
       expect(addressElement).toBeInTheDocument();
       expect(addressElement2).toBeInTheDocument();
     });
+    it("should render address line 2 if address line 2 is provided", () => {
+      const form = screen.getByRole("form");
+      const addressLineOneElement = screen.getByLabelText(/address line 1/i);
+      const addressLineTwoEleemnt = screen.getByLabelText(/address line 2/i);
+      const cityElement = screen.getByLabelText(/city/i);
+      const stateElement = screen.getByLabelText(/state/i);
+      const zipElement = screen.getByLabelText(/postal code/i);
+
+      fireEvent.change(addressLineOneElement, {
+        target: { value: "123 Maple Street" },
+      });
+      fireEvent.change(addressLineTwoEleemnt, {
+        target: { value: "Example Apt, Rm 101" },
+      });
+      fireEvent.change(cityElement, { target: { value: "Anytown" } });
+      fireEvent.change(stateElement, { target: { value: "PA" } });
+      fireEvent.change(zipElement, { target: { value: 17101 } });
+      fireEvent.submit(form);
+
+      const addressElement = screen.getByText(/123 maple street/i);
+      const addressElement2 = screen.getByText(/example apt, rm 101/i);
+      const addressElement3 = screen.getByText(/anytown, pa 17101/i);
+      expect(addressElement).toBeInTheDocument();
+      expect(addressElement2).toBeInTheDocument();
+      expect(addressElement3).toBeInTheDocument();
+    });
     it.todo("should render email after submitting");
     it.todo("should render phone number after submitting");
   });
