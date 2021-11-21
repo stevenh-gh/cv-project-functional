@@ -1,6 +1,6 @@
 import React from "react";
 
-export default class GeneralInformation extends React.Component {
+export default class Personal extends React.Component {
   render() {
     return (
       <form>

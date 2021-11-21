@@ -1,8 +1,8 @@
 import { render, screen } from "@testing-library/react";
-import GeneralInformation from "./GeneralInformation";
+import Personal from "./Personal";
 
 beforeEach(() => {
-  render(<GeneralInformation />);
+  render(<Personal />);
 });
 describe("GeneralInformation", () => {
   it("should render first name", () => {
