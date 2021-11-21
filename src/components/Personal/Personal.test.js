@@ -4,6 +4,7 @@ import Personal from "./Personal";
 beforeEach(() => {
   render(<Personal />);
 });
+
 describe("Personal", () => {
   it("should render first name", () => {
     const firstNameElement = screen.getByLabelText(/first name/i);
@@ -31,8 +32,8 @@ describe("Personal", () => {
   });
 
   it("should render postal code", () => {
-    const postalCode = screen.getByLabelText(/postal code/i);
-    expect(postalCode).toBeInTheDocument();
+    const postalCodeElement = screen.getByLabelText(/postal code/i);
+    expect(postalCodeElement).toBeInTheDocument();
   });
 
   it("should render email", () => {
