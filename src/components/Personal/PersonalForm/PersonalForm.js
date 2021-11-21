@@ -2,9 +2,6 @@ import React from "react";
 import Input from "../Input/Input";
 
 export default class PersonalForm extends React.Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     let { submit, isVisible } = this.props;
     return (
@@ -18,6 +15,7 @@ export default class PersonalForm extends React.Component {
         <Input id="addressLineOne" text="Address line 1" />
         <Input id="addressLineTwo" text="Address line 2" />
         <Input id="city" text="City" />
+        <Input id="state" text="State" />
         <Input id="postalCode" text="Postal code" />
         <Input id="email" text="Email" />
         <Input id="phone" text="Phone" />
