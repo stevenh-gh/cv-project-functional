@@ -126,6 +126,14 @@ describe("Personal", () => {
       const emailElement = screen.getByText(/example@email.com/i);
       expect(emailElement).toBeInTheDocument();
     });
-    it.todo("should render phone number after submitting");
+    it("should render phone number after submitting", () => {
+      const form = screen.getByRole("form");
+      const phone = screen.getByLabelText(/phone/i);
+
+      fireEvent.change(phone, { target: { value: "(123) 456-7899" } });
+      fireEvent.submit(form);
+      const phoneElement = screen.getByText("(123) 456-7899");
+      expect(phoneElement).toBeInTheDocument();
+    });
   });
 });
