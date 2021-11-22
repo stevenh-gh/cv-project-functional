@@ -116,7 +116,16 @@ describe("Personal", () => {
       expect(addressElement2).toBeInTheDocument();
       expect(addressElement3).toBeInTheDocument();
     });
-    it.todo("should render email after submitting");
+    it("should render email after submitting", () => {
+      const form = screen.getByRole("form");
+      const email = screen.getByLabelText(/email/i);
+
+      fireEvent.change(email, { target: { value: "example@email.com" } });
+      fireEvent.submit(form);
+
+      const emailElement = screen.getByText(/example@email.com/i);
+      expect(emailElement).toBeInTheDocument();
+    });
     it.todo("should render phone number after submitting");
   });
 });
