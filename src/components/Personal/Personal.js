@@ -14,6 +14,7 @@ export default class Personal extends React.Component {
         city: "",
         state: "",
         postalCode: "",
+        email: "",
       },
     };
   }
@@ -30,6 +31,7 @@ export default class Personal extends React.Component {
         city: e.target.elements[4].value,
         state: e.target.elements[5].value,
         postalCode: e.target.elements[6].value,
+        email: e.target.elements[7].value,
       },
     });
   };
@@ -44,6 +46,7 @@ export default class Personal extends React.Component {
       state,
       postalCode,
       addressLineTwo,
+      email,
     } = this.state.personalInfo;
     return (
       <>
@@ -58,6 +61,7 @@ export default class Personal extends React.Component {
             <div>
               {city}, {state} {postalCode}
             </div>
+            <div>{email}</div>
           </div>
         </div>
       </>
