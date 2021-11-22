@@ -13,10 +13,10 @@ export default class PersonalInfo extends React.Component {
       email,
       phone,
     } = this.props.pInfo;
-    const { formVisible } = this.props.visibility;
+    const { visibility } = this.props;
 
     return (
-      <div className={!formVisible ? "" : "hidden"}>
+      <div className={!visibility ? "" : "hidden"}>
         <div>
           {firstName} {lastName}
         </div>
