@@ -3,7 +3,7 @@ import Input from "../Input/Input";
 
 export default class PersonalForm extends React.Component {
   render() {
-    let { submit, isVisible } = this.props;
+    const { submit, isVisible } = this.props;
     return (
       <form
         aria-label="form"
