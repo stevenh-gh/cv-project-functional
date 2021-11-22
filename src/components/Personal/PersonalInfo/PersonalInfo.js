@@ -17,6 +17,7 @@ export default class PersonalInfo extends React.Component {
 
     return (
       <div className={!visibility ? "" : "hidden"}>
+        <i className="fas fa-edit" data-testid="editbtn"></i>
         <div>
           {firstName} {lastName}
         </div>
