@@ -1,5 +1,6 @@
 import React from "react";
 import PersonalForm from "./PersonalForm/PersonalForm";
+import PersonalInfo from "./PersonalInfo/PersonalInfo";
 
 export default class Personal extends React.Component {
   constructor(props) {
@@ -39,35 +40,16 @@ export default class Personal extends React.Component {
   };
 
   render() {
-    let { formVisible } = this.state;
-    let {
-      firstName,
-      lastName,
-      addressLineOne,
-      city,
-      state,
-      postalCode,
-      addressLineTwo,
-      email,
-      phone,
-    } = this.state.personalInfo;
     return (
       <>
-        <PersonalForm submit={this.handleSubmit} isVisible={formVisible} />
-        <div className={!formVisible ? "" : "hidden"}>
-          <div>
-            {firstName} {lastName}
-          </div>
-          <div>
-            <div>{addressLineOne}</div>
-            <div>{addressLineTwo}</div>
-            <div>
-              {city}, {state} {postalCode}
-            </div>
-          </div>
-          <div>{email}</div>
-          <div>{phone}</div>
-        </div>
+        <PersonalForm
+          submit={this.handleSubmit}
+          isVisible={this.state.formVisible}
+        />
+        <PersonalInfo
+          pInfo={this.state.personalInfo}
+          visibility={this.state.formVisible}
+        />
       </>
     );
   }
