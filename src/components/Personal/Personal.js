@@ -39,6 +39,13 @@ export default class Personal extends React.Component {
     });
   };
 
+  edit = () => {
+    // console.log("working");
+    this.setState({
+      formVisible: !this.state.formVisible,
+    });
+  };
+
   render() {
     return (
       <>
@@ -49,6 +56,7 @@ export default class Personal extends React.Component {
         <PersonalInfo
           pInfo={this.state.personalInfo}
           visibility={this.state.formVisible}
+          edit={this.edit}
         />
       </>
     );
