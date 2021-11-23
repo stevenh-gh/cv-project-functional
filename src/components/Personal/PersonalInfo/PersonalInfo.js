@@ -16,8 +16,12 @@ export default class PersonalInfo extends React.Component {
     const { visibility } = this.props;
 
     return (
-      <div className={!visibility ? "" : "hidden"}>
-        <i className="fas fa-edit" data-testid="editbtn"></i>
+      <div className={!visibility ? "" : "hidden"} data-testid="personalinfo">
+        <i
+          className="fas fa-edit cursor-pointer"
+          onClick={this.props.edit}
+          data-testid="editbtn"
+        ></i>
         <div>
           {firstName} {lastName}
         </div>
