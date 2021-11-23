@@ -52,6 +52,7 @@ export default class Personal extends React.Component {
         <PersonalForm
           submit={this.handleSubmit}
           isVisible={this.state.formVisible}
+          info={this.state.personalInfo}
         />
         <PersonalInfo
           pInfo={this.state.personalInfo}
