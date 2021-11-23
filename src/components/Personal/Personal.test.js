@@ -156,5 +156,119 @@ describe("Personal", () => {
 
       expect(personalInfo).toHaveClass("hidden");
     });
+
+    it("should have first name as value", () => {
+      const editBtnElement = screen.getByTestId("editbtn");
+      const form = screen.getByRole("form");
+      const firstName = screen.getByLabelText(/first name/i);
+
+      fireEvent.change(firstName, { target: { value: "john" } });
+      fireEvent.submit(form);
+      fireEvent.click(editBtnElement);
+
+      expect(firstName).toHaveValue("john");
+    });
+    it("should have last name as value", () => {
+      const editBtnElement = screen.getByTestId("editbtn");
+      const form = screen.getByRole("form");
+      const lastName = screen.getByLabelText(/last name/i);
+
+      fireEvent.change(lastName, { target: { value: "doe" } });
+      fireEvent.submit(form);
+      fireEvent.click(editBtnElement);
+
+      expect(lastName).toHaveValue("doe");
+    });
+    it("should have address line 1 as value", () => {
+      const editBtnElement = screen.getByTestId("editbtn");
+      const form = screen.getByRole("form");
+      const addressLineOne = screen.getByLabelText(/address line 1/i);
+
+      fireEvent.change(addressLineOne, {
+        target: { value: "999 example street" },
+      });
+      fireEvent.submit(form);
+      fireEvent.click(editBtnElement);
+
+      expect(addressLineOne).toHaveValue("999 example street");
+    });
+    it("should have address line 2 as value", () => {
+      const editBtnElement = screen.getByTestId("editbtn");
+      const form = screen.getByRole("form");
+      const addressLineTwo = screen.getByLabelText(/address line 2/i);
+
+      fireEvent.change(addressLineTwo, {
+        target: { value: "Ste. 305" },
+      });
+      fireEvent.submit(form);
+      fireEvent.click(editBtnElement);
+
+      expect(addressLineTwo).toHaveValue("Ste. 305");
+    });
+    it("should have city as value", () => {
+      const editBtnElement = screen.getByTestId("editbtn");
+      const form = screen.getByRole("form");
+      const city = screen.getByLabelText(/city/i);
+
+      fireEvent.change(city, {
+        target: { value: "san francisco" },
+      });
+      fireEvent.submit(form);
+      fireEvent.click(editBtnElement);
+
+      expect(city).toHaveValue("san francisco");
+    });
+    it("should have state as value", () => {
+      const editBtnElement = screen.getByTestId("editbtn");
+      const form = screen.getByRole("form");
+      const state = screen.getByLabelText(/state/i);
+
+      fireEvent.change(state, {
+        target: { value: "ca" },
+      });
+      fireEvent.submit(form);
+      fireEvent.click(editBtnElement);
+
+      expect(state).toHaveValue("ca");
+    });
+    it("should have postal code as value", () => {
+      const editBtnElement = screen.getByTestId("editbtn");
+      const form = screen.getByRole("form");
+      const postalCode = screen.getByLabelText(/postal code/i);
+
+      fireEvent.change(postalCode, {
+        target: { value: "94499" },
+      });
+      fireEvent.submit(form);
+      fireEvent.click(editBtnElement);
+
+      expect(postalCode).toHaveValue("94499");
+    });
+    it("should have email as value", () => {
+      const editBtnElement = screen.getByTestId("editbtn");
+      const form = screen.getByRole("form");
+      const email = screen.getByLabelText(/email/i);
+
+      fireEvent.change(email, {
+        target: { value: "example2@email2.com" },
+      });
+      fireEvent.submit(form);
+      fireEvent.click(editBtnElement);
+
+      expect(email).toHaveValue("example2@email2.com");
+    });
+    it("should have phone as value", () => {
+      const editBtnElement = screen.getByTestId("editbtn");
+      const form = screen.getByRole("form");
+      const phone = screen.getByLabelText(/phone/i);
+
+      fireEvent.change(phone, {
+        target: { value: "111 111 1111" },
+      });
+      fireEvent.submit(form);
+      fireEvent.click(editBtnElement);
+
+      expect(phone).toHaveValue("111 111 1111");
+    });
   });
 });
