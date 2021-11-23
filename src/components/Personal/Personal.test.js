@@ -136,4 +136,25 @@ describe("Personal", () => {
       expect(phoneElement).toBeInTheDocument();
     });
   });
+
+  describe("after clicking the edit button", () => {
+    it("should have form be visible", () => {
+      const editBtnElement = screen.getByTestId("editbtn");
+      const form = screen.getByRole("form");
+      fireEvent.submit(form);
+      fireEvent.click(editBtnElement);
+      expect(form).not.toHaveClass("hidden");
+    });
+
+    it("should have personal info not be visible", () => {
+      const editBtnElement = screen.getByTestId("editbtn");
+      const form = screen.getByRole("form");
+      const personalInfo = screen.getByTestId("personalinfo");
+
+      fireEvent.submit(form);
+      fireEvent.click(editBtnElement);
+
+      expect(personalInfo).toHaveClass("hidden");
+    });
+  });
 });
