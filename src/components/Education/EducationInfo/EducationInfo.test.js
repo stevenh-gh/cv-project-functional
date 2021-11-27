@@ -1,22 +1,17 @@
 import { fireEvent, render, screen } from "@testing-library/react";
-import PersonalInfo from "./PersonalInfo";
+import EducationInfo from "./EducationInfo"
 
 beforeEach(() => {
-  let personalInfo = {
-    firstName: "",
-    lastName: "",
-    addressLineOne: "",
-    addressLineTwo: "",
-    city: "",
-    state: "",
-    postalCode: "",
-    email: "",
-    phone: "",
+  let educationInfo = {
+    institution: "",
+    fromYear: "",
+    toYear: "",
+    degree: "",
   };
 
-  render(<PersonalInfo pInfo={personalInfo} visibility={false} />);
+  render(<EducationInfo eInfo={educationInfo} visibility={false} />);
 });
-describe("PersonalInfo", () => {
+describe("EducationInfo", () => {
   it("should have an edit button", () => {
     const editButtonElement = screen.getByTestId("editbtn");
     expect(editButtonElement).toBeInTheDocument();
