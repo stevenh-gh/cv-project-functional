@@ -1,39 +1,22 @@
 import React from "react";
 
-export default class PersonalInfo extends React.Component {
+export default class EducationInfo extends React.Component {
   render() {
-    const {
-      firstName,
-      lastName,
-      addressLineOne,
-      addressLineTwo,
-      city,
-      state,
-      postalCode,
-      email,
-      phone,
-    } = this.props.pInfo;
+    const { institution, fromYear, toYear, degree } = this.props.eInfo;
     const { visibility } = this.props;
 
     return (
-      <div className={!visibility ? "" : "hidden"} data-testid="personalinfo">
+      <div className={!visibility ? "" : "hidden"} data-testid="educationinfo">
         <i
           className="fas fa-edit cursor-pointer"
           onClick={this.props.edit}
           data-testid="editbtn"
         ></i>
+        <div>{institution}</div>
         <div>
-          {firstName} {lastName}
+          {fromYear} - {toYear}
         </div>
-        <div>
-          <div>{addressLineOne}</div>
-          <div>{addressLineTwo}</div>
-          <div>
-            {city}, {state} {postalCode}
-          </div>
-        </div>
-        <div>{email}</div>
-        <div>{phone}</div>
+        <div>{degree}</div>
       </div>
     );
   }
