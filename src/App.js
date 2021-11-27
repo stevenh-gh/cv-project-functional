@@ -1,4 +1,5 @@
 import React from "react";
+import Education from "./components/Education/Education";
 import Header from "./components/Header/Header";
 import Personal from "./components/Personal/Personal";
 
@@ -8,6 +9,7 @@ class App extends React.Component {
       <div className="container mx-auto bg-blue-200">
         <Header />
         <Personal />
+        <Education />
       </div>
     );
   }
