@@ -1,54 +1,29 @@
 import { fireEvent, render, screen } from "@testing-library/react";
-import Personal from "./Personal";
+import Education from "./Education";
 
 beforeEach(() => {
-  render(<Personal />);
+  render(<Education />);
 });
 
-describe("Personal", () => {
-  it("should render first name", () => {
-    const firstNameElement = screen.getByLabelText(/first name/i);
-    expect(firstNameElement).toBeInTheDocument();
+describe("Education", () => {
+  it("should render name of institution", () => {
+    const institution = screen.getByLabelText(/name of institution/i);
+    expect(institution).toBeInTheDocument();
   });
 
-  it("should render last name form", () => {
-    const lastNameElement = screen.getByLabelText(/last name/i);
-    expect(lastNameElement).toBeInTheDocument();
+  it("should render from year form", () => {
+    const yearStart = screen.getByLabelText(/from year/i);
+    expect(yearStart).toBeInTheDocument();
   });
 
-  it("should render address line 1", () => {
-    const addressOneElement = screen.getByLabelText(/address line 1/i);
-    expect(addressOneElement).toBeInTheDocument();
+  it("should render to year form", () => {
+    const yearEnd = screen.getByLabelText(/to year/i);
+    expect(yearEnd).toBeInTheDocument();
   });
 
-  it("should render address line 2", () => {
-    const addressTwoElement = screen.getByLabelText(/address line 2/i);
-    expect(addressTwoElement).toBeInTheDocument();
-  });
-
-  it("should render city", () => {
-    const cityElement = screen.getByLabelText(/city/i);
-    expect(cityElement).toBeInTheDocument();
-  });
-
-  it("should render postal code", () => {
-    const postalCodeElement = screen.getByLabelText(/postal code/i);
-    expect(postalCodeElement).toBeInTheDocument();
-  });
-
-  it("should render email", () => {
-    const emailElement = screen.getByLabelText(/email/i);
-    expect(emailElement).toBeInTheDocument();
-  });
-
-  it("should render phone", () => {
-    const phoneElement = screen.getByLabelText(/phone/i);
-    expect(phoneElement).toBeInTheDocument();
-  });
-
-  it("should render submit button", () => {
-    const submitBtnElement = screen.getByRole("button");
-    expect(submitBtnElement).toBeInTheDocument();
+  it("should render degree", () => {
+    const degree = screen.getByLabelText(/degree/i);
+    expect(degree).toBeInTheDocument();
   });
 
   it("should be hidden when submit", () => {
@@ -59,216 +34,108 @@ describe("Personal", () => {
   });
 
   describe("after submitting", () => {
-    it("should render full name after submitting", () => {
-      const firstNameElement = screen.getByLabelText(/first name/i);
-      const lastNameElement = screen.getByLabelText(/last name/i);
+    it("should render institution after submitting", () => {
+      const institution = screen.getByLabelText(/institution/i);
       const formElement = screen.getByRole("form");
-      fireEvent.change(firstNameElement, { target: { value: "john" } });
-      fireEvent.change(lastNameElement, { target: { value: "doe" } });
+      fireEvent.change(institution, {
+        target: { value: "university of california davis" },
+      });
       fireEvent.submit(formElement);
       // const nameElement = screen.getAllByRole("generic", { name: "john doe" });
-      const nameElement = screen.getByText(/john doe/i);
-      expect(nameElement).toBeInTheDocument();
+      const institutionElement = screen.getByText(
+        /university of california davis/i
+      );
+      expect(institutionElement).toBeInTheDocument();
     });
-    it("should render address after submitting", () => {
+    it("should render years after submitting", () => {
       const form = screen.getByRole("form");
-      const addressLineOneElement = screen.getByLabelText(/address line 1/i);
-      const cityElement = screen.getByLabelText(/city/i);
-      const stateElement = screen.getByLabelText(/state/i);
-      const zipElement = screen.getByLabelText(/postal code/i);
+      const fromYearElement = screen.getByLabelText(/from year/i);
+      const toYearElement = screen.getByLabelText(/to year/i);
 
-      fireEvent.change(addressLineOneElement, {
-        target: { value: "123 Maple Street" },
+      fireEvent.change(fromYearElement, { target: { value: "2000" } });
+      fireEvent.change(toYearElement, { target: { value: "2004" } });
+      fireEvent.submit(form);
+
+      const year = screen.getByText("2000 - 2004");
+      expect(year).toBeInTheDocument();
+    });
+    it("should render degree after submitting", () => {
+      const form = screen.getByRole("form");
+      const degree = screen.getByLabelText(/degree/i);
+
+      fireEvent.change(degree, { target: { value: "B.S. Computer Science" } });
+      fireEvent.submit(form);
+
+      const degreeElement = screen.getByText(/b.s. computer science/i);
+      expect(degreeElement).toBeInTheDocument();
+    });
+
+    describe("after clicking the edit button", () => {
+      it("should have form be visible", () => {
+        const editBtnElement = screen.getByTestId("editbtn");
+        const form = screen.getByRole("form");
+        fireEvent.submit(form);
+        fireEvent.click(editBtnElement);
+        expect(form).not.toHaveClass("hidden");
       });
-      fireEvent.change(cityElement, { target: { value: "Anytown" } });
-      fireEvent.change(stateElement, { target: { value: "PA" } });
-      fireEvent.change(zipElement, { target: { value: 17101 } });
-      fireEvent.submit(form);
 
-      const addressElement = screen.getByText(/123 maple street/i);
-      const addressElement2 = screen.getByText(/anytown, pa 17101/i);
-      expect(addressElement).toBeInTheDocument();
-      expect(addressElement2).toBeInTheDocument();
-    });
-    it("should render address line 2 if address line 2 is provided", () => {
-      const form = screen.getByRole("form");
-      const addressLineOneElement = screen.getByLabelText(/address line 1/i);
-      const addressLineTwoEleemnt = screen.getByLabelText(/address line 2/i);
-      const cityElement = screen.getByLabelText(/city/i);
-      const stateElement = screen.getByLabelText(/state/i);
-      const zipElement = screen.getByLabelText(/postal code/i);
+      it("should have education info not be visible", () => {
+        const editBtnElement = screen.getByTestId("editbtn");
+        const form = screen.getByRole("form");
+        const educationInfo = screen.getByTestId("educationinfo");
 
-      fireEvent.change(addressLineOneElement, {
-        target: { value: "123 Maple Street" },
+        fireEvent.submit(form);
+        fireEvent.click(editBtnElement);
+
+        expect(educationInfo).toHaveClass("hidden");
       });
-      fireEvent.change(addressLineTwoEleemnt, {
-        target: { value: "Example Apt, Rm 101" },
+
+      it("should have institution as value", () => {
+        const editBtnElement = screen.getByTestId("editbtn");
+        const form = screen.getByRole("form");
+        const institution = screen.getByLabelText(/institution/i);
+
+        fireEvent.change(institution, {
+          target: { value: "university of california berkeley" },
+        });
+        fireEvent.submit(form);
+        fireEvent.click(editBtnElement);
+
+        expect(institution).toHaveValue("university of california berkeley");
       });
-      fireEvent.change(cityElement, { target: { value: "Anytown" } });
-      fireEvent.change(stateElement, { target: { value: "PA" } });
-      fireEvent.change(zipElement, { target: { value: 17101 } });
-      fireEvent.submit(form);
+      it("should have from year as value", () => {
+        const editBtnElement = screen.getByTestId("editbtn");
+        const form = screen.getByRole("form");
+        const fromYear = screen.getByLabelText(/from year/i);
 
-      const addressElement = screen.getByText(/123 maple street/i);
-      const addressElement2 = screen.getByText(/example apt, rm 101/i);
-      const addressElement3 = screen.getByText(/anytown, pa 17101/i);
-      expect(addressElement).toBeInTheDocument();
-      expect(addressElement2).toBeInTheDocument();
-      expect(addressElement3).toBeInTheDocument();
-    });
-    it("should render email after submitting", () => {
-      const form = screen.getByRole("form");
-      const email = screen.getByLabelText(/email/i);
+        fireEvent.change(fromYear, { target: { value: "1990" } });
+        fireEvent.submit(form);
+        fireEvent.click(editBtnElement);
 
-      fireEvent.change(email, { target: { value: "example@email.com" } });
-      fireEvent.submit(form);
-
-      const emailElement = screen.getByText(/example@email.com/i);
-      expect(emailElement).toBeInTheDocument();
-    });
-    it("should render phone number after submitting", () => {
-      const form = screen.getByRole("form");
-      const phone = screen.getByLabelText(/phone/i);
-
-      fireEvent.change(phone, { target: { value: "(123) 456-7899" } });
-      fireEvent.submit(form);
-      const phoneElement = screen.getByText("(123) 456-7899");
-      expect(phoneElement).toBeInTheDocument();
-    });
-  });
-
-  describe("after clicking the edit button", () => {
-    it("should have form be visible", () => {
-      const editBtnElement = screen.getByTestId("editbtn");
-      const form = screen.getByRole("form");
-      fireEvent.submit(form);
-      fireEvent.click(editBtnElement);
-      expect(form).not.toHaveClass("hidden");
-    });
-
-    it("should have personal info not be visible", () => {
-      const editBtnElement = screen.getByTestId("editbtn");
-      const form = screen.getByRole("form");
-      const personalInfo = screen.getByTestId("personalinfo");
-
-      fireEvent.submit(form);
-      fireEvent.click(editBtnElement);
-
-      expect(personalInfo).toHaveClass("hidden");
-    });
-
-    it("should have first name as value", () => {
-      const editBtnElement = screen.getByTestId("editbtn");
-      const form = screen.getByRole("form");
-      const firstName = screen.getByLabelText(/first name/i);
-
-      fireEvent.change(firstName, { target: { value: "john" } });
-      fireEvent.submit(form);
-      fireEvent.click(editBtnElement);
-
-      expect(firstName).toHaveValue("john");
-    });
-    it("should have last name as value", () => {
-      const editBtnElement = screen.getByTestId("editbtn");
-      const form = screen.getByRole("form");
-      const lastName = screen.getByLabelText(/last name/i);
-
-      fireEvent.change(lastName, { target: { value: "doe" } });
-      fireEvent.submit(form);
-      fireEvent.click(editBtnElement);
-
-      expect(lastName).toHaveValue("doe");
-    });
-    it("should have address line 1 as value", () => {
-      const editBtnElement = screen.getByTestId("editbtn");
-      const form = screen.getByRole("form");
-      const addressLineOne = screen.getByLabelText(/address line 1/i);
-
-      fireEvent.change(addressLineOne, {
-        target: { value: "999 example street" },
+        expect(fromYear).toHaveValue("1990");
       });
-      fireEvent.submit(form);
-      fireEvent.click(editBtnElement);
+      it("should have to year as value", () => {
+        const editBtnElement = screen.getByTestId("editbtn");
+        const form = screen.getByRole("form");
+        const toYear = screen.getByLabelText(/to year/i);
 
-      expect(addressLineOne).toHaveValue("999 example street");
-    });
-    it("should have address line 2 as value", () => {
-      const editBtnElement = screen.getByTestId("editbtn");
-      const form = screen.getByRole("form");
-      const addressLineTwo = screen.getByLabelText(/address line 2/i);
+        fireEvent.change(toYear, { target: { value: "1994" } });
+        fireEvent.submit(form);
+        fireEvent.click(editBtnElement);
 
-      fireEvent.change(addressLineTwo, {
-        target: { value: "Ste. 305" },
+        expect(toYear).toHaveValue("1994");
       });
-      fireEvent.submit(form);
-      fireEvent.click(editBtnElement);
+      it("should have degree as value", () => {
+        const editBtnElement = screen.getByTestId("editbtn");
+        const form = screen.getByRole("form");
+        const degree = screen.getByLabelText(/degree/i);
 
-      expect(addressLineTwo).toHaveValue("Ste. 305");
-    });
-    it("should have city as value", () => {
-      const editBtnElement = screen.getByTestId("editbtn");
-      const form = screen.getByRole("form");
-      const city = screen.getByLabelText(/city/i);
+        fireEvent.change(degree, { target: { value: "B.S. Mathematics" } });
+        fireEvent.submit(form);
+        fireEvent.click(editBtnElement);
 
-      fireEvent.change(city, {
-        target: { value: "san francisco" },
+        expect(degree).toHaveValue("B.S. Mathematics");
       });
-      fireEvent.submit(form);
-      fireEvent.click(editBtnElement);
-
-      expect(city).toHaveValue("san francisco");
-    });
-    it("should have state as value", () => {
-      const editBtnElement = screen.getByTestId("editbtn");
-      const form = screen.getByRole("form");
-      const state = screen.getByLabelText(/state/i);
-
-      fireEvent.change(state, {
-        target: { value: "ca" },
-      });
-      fireEvent.submit(form);
-      fireEvent.click(editBtnElement);
-
-      expect(state).toHaveValue("ca");
-    });
-    it("should have postal code as value", () => {
-      const editBtnElement = screen.getByTestId("editbtn");
-      const form = screen.getByRole("form");
-      const postalCode = screen.getByLabelText(/postal code/i);
-
-      fireEvent.change(postalCode, {
-        target: { value: "94499" },
-      });
-      fireEvent.submit(form);
-      fireEvent.click(editBtnElement);
-
-      expect(postalCode).toHaveValue("94499");
-    });
-    it("should have email as value", () => {
-      const editBtnElement = screen.getByTestId("editbtn");
-      const form = screen.getByRole("form");
-      const email = screen.getByLabelText(/email/i);
-
-      fireEvent.change(email, {
-        target: { value: "example2@email2.com" },
-      });
-      fireEvent.submit(form);
-      fireEvent.click(editBtnElement);
-
-      expect(email).toHaveValue("example2@email2.com");
-    });
-    it("should have phone as value", () => {
-      const editBtnElement = screen.getByTestId("editbtn");
-      const form = screen.getByRole("form");
-      const phone = screen.getByLabelText(/phone/i);
-
-      fireEvent.change(phone, {
-        target: { value: "111 111 1111" },
-      });
-      fireEvent.submit(form);
-      fireEvent.click(editBtnElement);
-
-      expect(phone).toHaveValue("111 111 1111");
     });
   });
 });
