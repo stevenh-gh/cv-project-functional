@@ -1,22 +1,17 @@
 import React from "react";
-import PersonalForm from "./PersonalForm/PersonalForm";
-import PersonalInfo from "./PersonalInfo/PersonalInfo";
+import EducationForm from "./EducationForm/EducationForm";
+import EducationInfo from "./EducationInfo/EducationInfo";
 
-export default class Personal extends React.Component {
+export default class Education extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       formVisible: true,
-      personalInfo: {
-        firstName: "",
-        lastName: "",
-        addressLineOne: "",
-        addressLineTwo: "",
-        city: "",
-        state: "",
-        postalCode: "",
-        email: "",
-        phone: "",
+      educationInfo: {
+        institution: "",
+        fromYear: "",
+        toYear: "",
+        degree: "",
       },
     };
   }
@@ -25,16 +20,11 @@ export default class Personal extends React.Component {
     e.preventDefault();
     this.setState({
       formVisible: !this.state.formVisible,
-      personalInfo: {
-        firstName: e.target.elements[0].value,
-        lastName: e.target.elements[1].value,
-        addressLineOne: e.target.elements[2].value,
-        addressLineTwo: e.target.elements[3].value,
-        city: e.target.elements[4].value,
-        state: e.target.elements[5].value,
-        postalCode: e.target.elements[6].value,
-        email: e.target.elements[7].value,
-        phone: e.target.elements[8].value,
+      educationInfo: {
+        institution: e.target.elements[0].value,
+        fromYear: e.target.elements[1].value,
+        toYear: e.target.elements[2].value,
+        degree: e.target.elements[3].value,
       },
     });
   };
@@ -49,13 +39,13 @@ export default class Personal extends React.Component {
   render() {
     return (
       <>
-        <PersonalForm
+        <EducationForm
           submit={this.handleSubmit}
           isVisible={this.state.formVisible}
-          info={this.state.personalInfo}
+          info={this.state.educationInfo}
         />
-        <PersonalInfo
-          pInfo={this.state.personalInfo}
+        <EducationInfo
+          eInfo={this.state.educationInfo}
           visibility={this.state.formVisible}
           edit={this.edit}
         />
