@@ -1,7 +1,7 @@
 import React from "react";
-import Input from "../Input/Input";
+import Input from "../../Input/Input";
 
-export default class PersonalForm extends React.Component {
+export default class ExperienceForm extends React.Component {
   render() {
     const { submit, isVisible, info } = this.props;
     const { firstName } = info.firstName;

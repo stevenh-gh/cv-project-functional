@@ -1,8 +1,8 @@
 import React from "react";
-import PersonalForm from "./PersonalForm/PersonalForm";
-import PersonalInfo from "./PersonalInfo/PersonalInfo";
+import ExperienceForm from "./ExperienceForm/ExperienceForm";
+import ExperienceInfo from "./ExperienceInfo/ExperienceInfo";
 
-export default class Personal extends React.Component {
+export default class Experience extends React.Component {
   constructor(props) {
     super(props);
     this.state = {

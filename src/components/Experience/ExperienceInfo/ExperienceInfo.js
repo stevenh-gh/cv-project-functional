@@ -1,6 +1,6 @@
 import React from "react";
 
-export default class PersonalInfo extends React.Component {
+export default class ExperienceInfo extends React.Component {
   render() {
     const {
       firstName,

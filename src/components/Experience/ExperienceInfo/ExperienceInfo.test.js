@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from "@testing-library/react";
-import PersonalInfo from "./PersonalInfo";
+import ExperienceInfo from "./ExperienceInfo";
 
 beforeEach(() => {
   let personalInfo = {
