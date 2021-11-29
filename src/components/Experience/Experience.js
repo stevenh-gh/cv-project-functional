@@ -7,16 +7,12 @@ export default class Experience extends React.Component {
     super(props);
     this.state = {
       formVisible: true,
-      personalInfo: {
-        firstName: "",
-        lastName: "",
-        addressLineOne: "",
-        addressLineTwo: "",
-        city: "",
-        state: "",
-        postalCode: "",
-        email: "",
-        phone: "",
+      experienceInfo: {
+        company: "",
+        position: "",
+        responsibilities: "",
+        fromYear: "",
+        toYear: "",
       },
     };
   }
@@ -25,16 +21,12 @@ export default class Experience extends React.Component {
     e.preventDefault();
     this.setState({
       formVisible: !this.state.formVisible,
-      personalInfo: {
-        firstName: e.target.elements[0].value,
-        lastName: e.target.elements[1].value,
-        addressLineOne: e.target.elements[2].value,
-        addressLineTwo: e.target.elements[3].value,
-        city: e.target.elements[4].value,
-        state: e.target.elements[5].value,
-        postalCode: e.target.elements[6].value,
-        email: e.target.elements[7].value,
-        phone: e.target.elements[8].value,
+      experienceInfo: {
+        company: e.target.elements[0].value,
+        position: e.target.elements[1].value,
+        responsibilities: e.target.elements[2].value,
+        fromYear: e.target.elements[3].value,
+        toYear: e.target.elements[4].value,
       },
     });
   };
@@ -49,13 +41,13 @@ export default class Experience extends React.Component {
   render() {
     return (
       <>
-        <PersonalForm
+        <ExperienceForm
           submit={this.handleSubmit}
           isVisible={this.state.formVisible}
-          info={this.state.personalInfo}
+          info={this.state.experienceInfo}
         />
-        <PersonalInfo
-          pInfo={this.state.personalInfo}
+        <ExperienceInfo
+          eInfo={this.state.experienceInfo}
           visibility={this.state.formVisible}
           edit={this.edit}
         />

@@ -7,7 +7,7 @@ beforeEach(() => {
 
 describe("Experience", () => {
   it("should render company", () => {
-    const company = screen.getByLabelText(/company/i);
+    const company = screen.getByLabelText("Company");
     expect(company).toBeInTheDocument();
   });
 
@@ -45,12 +45,12 @@ describe("Experience", () => {
 
   describe("after submitting", () => {
     it("should render company after submitting", () => {
-      const company = screen.getByLabelText(/company/i);
+      const company = screen.getByLabelText("Company");
       const formElement = screen.getByRole("form");
-      fireEvent.change(firstNameElement, { target: { value: "Amazon" } });
+      fireEvent.change(company, { target: { value: "Amazon" } });
       fireEvent.submit(formElement);
 
-      const companyElement = screen.getByText(/amazon/i);
+      const companyElement = screen.getByText("Amazon");
       expect(companyElement).toBeInTheDocument();
     });
     it("should render position after submitting", () => {
@@ -81,7 +81,7 @@ describe("Experience", () => {
 
       fireEvent.change(fromYear, { target: { value: "2000" } });
       fireEvent.submit(form);
-      const fyElement = screen.getByText("2000");
+      const fyElement = screen.getByText(/2000/i);
       expect(fyElement).toBeInTheDocument();
     });
   });
@@ -91,7 +91,7 @@ describe("Experience", () => {
 
     fireEvent.change(toYear, { target: { value: "2009" } });
     fireEvent.submit(form);
-    const tyElement = screen.getByText("2009");
+    const tyElement = screen.getByText(/2009/i);
     expect(tyElement).toBeInTheDocument();
   });
 });
@@ -119,7 +119,7 @@ describe("after clicking the edit button", () => {
   it("should have company as value", () => {
     const editBtnElement = screen.getByTestId("editbtn");
     const form = screen.getByRole("form");
-    const company = screen.getByLabelText(/company/i);
+    const company = screen.getByLabelText("Company");
 
     fireEvent.change(company, { target: { value: "Microsoft" } });
     fireEvent.submit(form);
