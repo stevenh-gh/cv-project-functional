@@ -7,7 +7,13 @@ export default class Input extends React.Component {
       <>
         <label htmlFor={id}>{text}</label>
         <br />
-        <input type="text" name="" id={id} value={val} />
+        <input
+          className="appearance-none bg-gray-200 text-gray-700 border border-gray-200 rounded focus:outline-none focus:bg-white focus:border-gray-500 leading-tight mb-3 py-3 px-4"
+          type="text"
+          name=""
+          id={id}
+          value={val}
+        />
         <br />
       </>
     );
