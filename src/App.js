@@ -7,11 +7,13 @@ import Personal from "./components/Personal/Personal";
 class App extends React.Component {
   render() {
     return (
-      <div className="container mx-auto bg-blue-200">
-        <Header />
-        <Personal />
-        <Education />
-        <Experience />
+      <div className="container mx-auto grid grid-cols-12">
+        <div className="col-span-6 col-start-4">
+          <Header />
+          <Personal />
+          <Education />
+          <Experience />
+        </div>
       </div>
     );
   }
