@@ -40,7 +40,7 @@ export default class PersonalForm extends React.Component {
             <Input id="phone" text="Phone" />
           </div>
           <button
-            className=" col-span-2 col-start-6 py-1 bg-green-400 border-green-400 hover:border-green-500 hover:bg-green-500 text-sm border-4 text-white rounded mb-4"
+            className="col-span-2 col-start-6 py-1 bg-green-400 border-green-400 hover:border-green-500 hover:bg-green-500 text-sm border-4 text-white rounded mb-4"
             type="submit"
           >
             Submit
