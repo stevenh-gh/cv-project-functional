@@ -11,7 +11,9 @@ class App extends React.Component {
         <div className="col-span-6 col-start-4">
           <Header />
           <Personal />
+          <hr />
           <Education />
+          <hr />
           <Experience />
         </div>
       </div>
