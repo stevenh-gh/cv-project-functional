@@ -11,7 +11,7 @@ export default class EducationForm extends React.Component {
         onSubmit={submit}
         className={isVisible ? "" : "hidden"}
       >
-        <div className="grid grid-cols-12 gap-2">
+        <div className="grid grid-cols-12 gap-2 mt-4">
           <div className="col-span-12">
             <Input
               id="institution"
