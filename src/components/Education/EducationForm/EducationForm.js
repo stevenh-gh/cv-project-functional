@@ -11,11 +11,32 @@ export default class EducationForm extends React.Component {
         onSubmit={submit}
         className={isVisible ? "" : "hidden"}
       >
-        <Input id="institution" text="Name of institution" val={institution} />
-        <Input id="fromYear" text="From year" />
-        <Input id="toYear" text="To year" />
-        <Input id="degree" text="Degree" />
-       <button type="submit">Submit</button>
+        <div className="grid grid-cols-12 gap-2">
+          <div className="col-span-12">
+            <Input
+              id="institution"
+              text="Name of institution"
+              val={institution}
+            />
+          </div>
+          <div className="col-span-6">
+            {" "}
+            <Input id="fromYear" text="From year" />
+          </div>{" "}
+          <div className="col-span-6">
+            {" "}
+            <Input id="toYear" text="To year" />
+          </div>
+          <div className="col-span-12">
+            <Input id="degree" text="Degree" />
+          </div>{" "}
+          <button
+            className="col-span-2 col-start-6 py-1 bg-green-400 border-green-400 hover:border-green-500 hover:bg-green-500 text-sm border-4 text-white rounded mb-4"
+            type="submit"
+          >
+            Submit
+          </button>
+        </div>
       </form>
     );
   }
