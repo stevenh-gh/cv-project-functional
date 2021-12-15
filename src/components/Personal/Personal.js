@@ -1,65 +1,52 @@
-import React from "react";
+import React, { useState } from "react";
 import PersonalForm from "./PersonalForm/PersonalForm";
 import PersonalInfo from "./PersonalInfo/PersonalInfo";
 
-export default class Personal extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      formVisible: true,
-      personalInfo: {
-        firstName: "",
-        lastName: "",
-        addressLineOne: "",
-        addressLineTwo: "",
-        city: "",
-        state: "",
-        postalCode: "",
-        email: "",
-        phone: "",
-      },
-    };
-  }
+const Personal = () => {
+  const [formVisible, setFormVisible] = useState(true);
+  const [personalInfo, setPersonalInfo] = useState({
+    firstName: "",
+    lastName: "",
+    addressLineOne: "",
+    addressLineTwo: "",
+    city: "",
+    state: "",
+    postalCode: "",
+    email: "",
+    phone: "",
+  });
 
-  handleSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    this.setState({
-      formVisible: !this.state.formVisible,
-      personalInfo: {
-        firstName: e.target.elements[0].value,
-        lastName: e.target.elements[1].value,
-        addressLineOne: e.target.elements[2].value,
-        addressLineTwo: e.target.elements[3].value,
-        city: e.target.elements[4].value,
-        state: e.target.elements[5].value,
-        postalCode: e.target.elements[6].value,
-        email: e.target.elements[7].value,
-        phone: e.target.elements[8].value,
-      },
+    setFormVisible(!formVisible);
+    setPersonalInfo({
+      firstName: e.target.elements[0].value,
+      lastName: e.target.elements[1].value,
+      addressLineOne: e.target.elements[2].value,
+      addressLineTwo: e.target.elements[3].value,
+      city: e.target.elements[4].value,
+      state: e.target.elements[5].value,
+      postalCode: e.target.elements[6].value,
+      email: e.target.elements[7].value,
+      phone: e.target.elements[8].value,
     });
   };
 
-  edit = () => {
+  const edit = () => {
     // console.log("working");
-    this.setState({
-      formVisible: !this.state.formVisible,
-    });
+    setFormVisible(!formVisible);
   };
 
-  render() {
-    return (
-      <>
-        <PersonalForm
-          submit={this.handleSubmit}
-          isVisible={this.state.formVisible}
-          info={this.state.personalInfo}
-        />
-        <PersonalInfo
-          pInfo={this.state.personalInfo}
-          visibility={this.state.formVisible}
-          edit={this.edit}
-        />
-      </>
-    );
-  }
-}
+  return (
+    <>
+      <PersonalForm
+        submit={handleSubmit}
+        isVisible={formVisible}
+        info={personalInfo}
+      />
+      <PersonalInfo pInfo={personalInfo} visibility={formVisible} edit={edit} />
+    </>
+  );
+};
+
+export default Personal;
