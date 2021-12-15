@@ -1,55 +1,46 @@
 import React from "react";
+import { useState } from "react/cjs/react.development";
 import EducationForm from "./EducationForm/EducationForm";
 import EducationInfo from "./EducationInfo/EducationInfo";
 
-export default class Education extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      formVisible: true,
-      educationInfo: {
-        institution: "",
-        fromYear: "",
-        toYear: "",
-        degree: "",
-      },
-    };
-  }
+const Education = () => {
+  const [formVisible, setFormVisible] = useState(true);
+  const [educationInfo, setEducationInfo] = useState({
+    institution: "",
+    fromYear: "",
+    toYear: "",
+    degree: "",
+  });
 
-  handleSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    this.setState({
-      formVisible: !this.state.formVisible,
-      educationInfo: {
-        institution: e.target.elements[0].value,
-        fromYear: e.target.elements[1].value,
-        toYear: e.target.elements[2].value,
-        degree: e.target.elements[3].value,
-      },
+    setFormVisible(!formVisible);
+    setEducationInfo({
+      institution: e.target.elements[0].value,
+      fromYear: e.target.elements[1].value,
+      toYear: e.target.elements[2].value,
+      degree: e.target.elements[3].value,
     });
   };
 
-  edit = () => {
+  const edit = () => {
     // console.log("working");
-    this.setState({
-      formVisible: !this.state.formVisible,
-    });
+    setFormVisible(!formVisible);
   };
 
-  render() {
-    return (
-      <>
-        <EducationForm
-          submit={this.handleSubmit}
-          isVisible={this.state.formVisible}
-          info={this.state.educationInfo}
-        />
-        <EducationInfo
-          eInfo={this.state.educationInfo}
-          visibility={this.state.formVisible}
-          edit={this.edit}
-        />
-      </>
-    );
-  }
-}
+  return (
+    <>
+      <EducationForm
+        submit={handleSubmit}
+        isVisible={formVisible}
+        info={educationInfo}
+      />
+      <EducationInfo
+        eInfo={educationInfo}
+        visibility={formVisible}
+        edit={edit}
+      />
+    </>
+  );
+};
+export default Education;
